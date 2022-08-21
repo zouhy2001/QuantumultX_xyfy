@@ -1,7 +1,7 @@
 
 /**
  * @author zouhy2001
- * @date 2022/08/21a
+ * @date 2022/08/21
  * @description 将下列参数正确填写 再添加quanx定时任务即可
  */
 
