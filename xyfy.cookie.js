@@ -1,4 +1,4 @@
-const cookieName = '校园防疫Cookie'
+const cookieName = '校园防疫'
 const cookieKey = 'cookie_xyfy'
 const chavy = init()
 const cookieVal = $request.headers['Cookie']
