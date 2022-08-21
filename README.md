@@ -1,4 +1,6 @@
 # QuantumultX_xyfy
+**存在问题 Cookie有效期时间不确定 不知道能不能定时发送请求保活增加有效期**
+
 QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Part 如下
   - [Part1 配置QuanX](#part1-配置quanx)
   - [Part2 QuanX获取Cookie](#part2-quanx获取cookie)
