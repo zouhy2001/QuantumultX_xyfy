@@ -57,10 +57,10 @@ $task.fetch(myRequest).then(response => {
     data = JSON.parse(response.body);
     //console.log(data.msg, '\n');
     $.msg($.name, data.msg, '')
-    $done();
+    $.done();
 }, reason => {
     console.log(reason.error);
-    $done();
+    $.done();
 });
 
 
