@@ -1,6 +1,9 @@
 # QuantumultX_xyfy
 QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Part 如下
-## Part1 配置Quanx
+  - [Part1 配置QuanX](#part1-配置quanx)
+  - [Part2 QuanX获取Cookie](#part2-quanx获取cookie)
+  - [Part3 配置定时任务](#part3-配置定时任务)
+## Part1 配置QuanX
 引用-资源重写-点击右上角添加新的资源
   - 资源标签随便填 资源路径填 这个 
   - https://raw.githubusercontent.com/zouhy2001/QuantumultX_xyfy/main/QuantumultX_Cookie.conf
