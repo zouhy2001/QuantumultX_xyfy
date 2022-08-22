@@ -58,18 +58,18 @@ function Post_Data() {
 				if (error) {
 					throw new Error(error);
 				} else {
-                    const body = '';
                     if(resp.status != 404){
-                        body = JSON.parse(data);
+                        const body = JSON.parse(data);
+                        if (body.code == 1001 || body.code ==1002) {
+                            $.msg($.name, body.msg, '')
+                            //$.log($.name, body.msg, '')
+                        } else {
+                            throw new Error('未知错误');
+                        }
                     }else{
                         throw new Error('网页访问404 Cookie过期');
                     }
-					if (body.code == 1001 || body.code ==1002) {
-						$.msg($.name, data.msg, '')
-                        $.log($.name, data.msg, '')
-					} else {
-						throw new Error('未知错误');
-					}
+					
 				}
 			} catch (e) {
 				console.log(`\n出现错误: ${e.message}`);
@@ -80,8 +80,7 @@ function Post_Data() {
 	})
 }
 
-(async function() { // 立即运行的匿名异步函数
-	// 使用await关键字声明, 表示以同步方式执行异步函数, 可以简单理解为顺序执行
+(async function() {
 	await Post_Data();
 	$.done();
 })();
