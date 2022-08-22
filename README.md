@@ -45,3 +45,4 @@ QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Par
   - 配置完毕 请求列表右滑可以调试查看效果
 ## 感谢
 [@chavy](https://github.com/chavyleung)
+[@NobyDa](https://github.com/NobyDa)
