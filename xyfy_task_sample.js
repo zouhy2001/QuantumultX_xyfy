@@ -68,7 +68,7 @@ function Post_Data() {
 						$.msg($.name, data.msg, '')
                         $.log($.name, data.msg, '')
 					} else {
-						throw new Error('Cookie过期');
+						throw new Error('未知错误');
 					}
 				}
 			} catch (e) {
