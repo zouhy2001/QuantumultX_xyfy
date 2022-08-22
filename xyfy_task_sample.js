@@ -59,12 +59,17 @@ function Post_Data() {
 					throw new Error(error);
 				} else {
                     if(resp.status != 404){
-                        const body = JSON.parse(data);
-                        if (body.code == 1001 || body.code ==1002) {
-                            $.msg($.name, body.msg, '')
-                            //$.log($.name, body.msg, '')
-                        } else {
-                            throw new Error('未知错误');
+                        try{
+                            const body = JSON.parse(data);
+                            if (body.code == 1001 || body.code ==1002) {
+                                $.msg($.name, body.msg, '')
+                                //$.log($.name, body.msg, '')
+                            } else {
+                                throw new Error('未知错误');
+                            }
+                        }
+                        catch{
+                            throw new Error('Cookie过期');
                         }
                     }else{
                         throw new Error('网页访问404 Cookie过期');
