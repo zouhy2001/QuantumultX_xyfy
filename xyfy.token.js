@@ -5,7 +5,7 @@ const auth_code = $request.body
 //console.log(auth_code);
 if (auth_code != chavy.getdata(tokenKey) && auth_code) {
   if (chavy.setdata(tokenKey, auth_code)) {
-    chavy.msg(`${tokenName}`, '获取auth_code: 成功', '更新时间 '+new Date().toLocaleTimeString(‘cn’,{hour12:false}))
+    chavy.msg(`${tokenName}`, '获取auth_code: 成功', '更新时间 '+new Date().toLocaleTimeString('zh', { hour12: false }))
     chavy.log(`[${tokenName}] 获取auth_code: 成功, auth_code: ${auth_code}`)
   }
 }else{
