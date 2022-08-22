@@ -1,13 +1,15 @@
-const cookieName = '校园防疫'
-const cookieKey = 'cookie_xyfy'
+const tokenName = '校园防疫'
+const tokenKey = 'token_xyfy'
 const chavy = init()
-const cookieVal = $request.headers['Cookie']
-if (cookieVal) {
-  if (chavy.setdata(cookieVal, cookieKey)) {
-    chavy.msg(`${cookieName}`, '获取Cookie: 成功', '')
-    chavy.log(`[${cookieName}] 获取Cookie: 成功, cookie: ${cookieVal}`)
+const auth_code = $request.body
+//console.log(auth_code);
+if (auth_code) {
+  if (chavy.setdata(tokenKey, auth_code)) {
+    chavy.msg(`${tokenName}`, '获取auth_code: 成功', '')
+    chavy.log(`[${tokenName}] 获取auth_code: 成功, auth_code: ${auth_code}`)
   }
 }
+
 function init() {
   isSurge = () => {
     return undefined === this.$httpClient ? false : true
