@@ -24,7 +24,7 @@ QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Par
 </div>
 
 ## Part3 配置定时任务
-  - iPhone 打开 https://github.com/zouhy2001/QuantumultX_xyfy/blob/master/xyfy_token_task_sample.js
+  - iPhone 打开 https://raw.githubusercontent.com/zouhy2001/QuantumultX_xyfy/blob/master/xyfy_token_task_sample.js
   - 复制模板中的内容
   - QuanX APP - 工具&分析-构造HTTP请求-点击右下角新建js脚本
   - 删除其中的内容 粘贴刚刚复制的模板
