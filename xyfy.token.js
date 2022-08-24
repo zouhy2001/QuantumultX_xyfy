@@ -6,12 +6,12 @@ const auth_code = $request.body
 //console.log(auth_code);
 
 if (auth_code != $.getdata(tokenKey) && auth_code) {
-  if ($.setdata(auth_code,tokenKey)) {
-    $.msg(`${$.name}`, '更新auth_code: 成功', '更新时间 '+new Date().toLocaleTimeString('zh', { hour12: false }))
-    $.log(`[${$.name}] 更新auth_code: 成功, auth_code: ${auth_code}`)
-  }
-}else{
-  $.log(`[${$.name}] 获取auth_code: 成功, auth_code: ${auth_code}`)
+    if ($.setdata(auth_code, tokenKey)) {
+        $.msg(`${$.name}`, '更新auth_code: 成功', '更新时间 ' + new Date().toLocaleTimeString('zh', { hour12: false }))
+        $.log(`[${$.name}] 更新auth_code: 成功, auth_code: ${auth_code}`)
+    }
+} else {
+    $.log(`[${$.name}] 获取auth_code: 成功, auth_code: ${auth_code}`)
 }
 
 // pre-ignore
