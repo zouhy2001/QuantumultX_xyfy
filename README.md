@@ -1,7 +1,14 @@
-# QuantumultX_xyfy
-本文是在main branch的基础上修改的 使用方法大致一样
+ # QuantumultX_xyfy
+**使用auth_code签到 auth_code的有效期为24小时 也就是说点一次小程序两天不用管 cron后台暴力美学 可以解决长时间卡白页的问题**
 
-**使用auth_code签到 auth_code的有效期为1天 cron后台暴力美学 可以解决长时间卡白页的问题 另一个branch是利用Cookie签到作用好像不大**
+ ## 更新日志
+ 2022/08/24 
+ - fix setdata函数的错误使用的问题
+ - 改进了打卡逻辑 避免无脑重复的向服务器发送打卡POST
+ 
+
+
+> 本文是在[main branch](https://github.com/zouhy2001/QuantumultX_xyfy/tree/main)的基础上修改的 使用方法大致一样 main branch是利用Cookie签到 Cookie的有效期在**1个小时**左右作用不大
 
 QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Part 如下
   - [Part1 配置QuanX](#part1-配置quanx)
