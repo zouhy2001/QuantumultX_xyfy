@@ -1,7 +1,7 @@
 
 /**
  * @author zouhy2001
- * @date 2022/08/21
+ * @date 2022/08/22
  * @description 将下列参数正确填写 再添加quanx定时任务即可
  */
 
@@ -26,11 +26,14 @@ const sfby = '1'
 
 const $ = new Env('校园防疫打卡')
 const tokenKey = 'token_xyfy'
+const lastsignKey = 'lastsign_xyfy'
 const auth_code = $.getdata(tokenKey)
 
 //console.log(auth_code)
 
 let temp_data = {}
+$.login_status = 0
+let today = new Date().getDate();
 
 function Login() {
     const LoginURL = { //支付宝小程序登录接口
@@ -53,12 +56,16 @@ function Login() {
                 if (error) {
                     throw new Error(error);
                 } else {
-                    try{
+                    try {
                         const body = JSON.parse(data);
-                        temp_data.token1= body.info.token;
+                        //console.log(data)
+                        temp_data.token1 = body.info.token;
                         //console.log(temp_data.token1);
+                        if (typeof (temp_data.token1) != "undefined") {
+                            $.login_status = 1;
+                        }
                     }
-                    catch{
+                    catch {
                         throw new Error("Step1.错误 解释JSON错误");
                     }
                 }
@@ -77,7 +84,7 @@ let login_url = '';
 function GetUserInfo() {
     const GetUserInfoURL = {
         url: 'https://xyfyapi.jx.edu.cn/user/get-user-info',
-        headers : {
+        headers: {
             'Accept-Charset': 'utf-8',
             'Connection': 'keep-alive',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -95,16 +102,16 @@ function GetUserInfo() {
                 if (error) {
                     throw new Error(error);
                 } else {
-                    try{
+                    try {
                         const body = JSON.parse(data);
                         temp_data.card_id = body.info.card_id;
                         temp_data.id_card_md5 = body.info.id_card_md5;
                         temp_data.token2 = body.info.token;
 
                         login_url = `https://fxgl.jx.edu.cn/${school_code}/third/alipayLogin?cardId=${temp_data.card_id}&sfzMd5=${temp_data.id_card_md5}&token=${temp_data.token2}`;
-                        console.log(login_url);
+                        //console.log(login_url);
                     }
-                    catch{
+                    catch {
                         throw new Error("Step2.错误 获取个人信息失败 拼接登录URL错误");
                     }
                 }
@@ -117,7 +124,7 @@ function GetUserInfo() {
     })
 }
 
- 
+
 
 function FinalLogin() {
     const FinalLoginURL = {
@@ -129,11 +136,11 @@ function FinalLogin() {
                 if (error) {
                     throw new Error(error);
                 } else {
-                    try{
+                    try {
                         //console.log("step3 conf负责getcookie");
                         //console.log(resp.)
                     }
-                    catch{
+                    catch {
                         throw new Error("Step3.错误");
                     }
                 }
@@ -147,63 +154,73 @@ function FinalLogin() {
 }
 
 function Post_Data() {
-	const myRequest = {
+    const myRequest = {
         url: `https://fxgl.jx.edu.cn/${school_code}/studentQd/saveStu`,
         method: `POST`,
         headers: {
-            'X-Requested-With' : `XMLHttpRequest`,
-            'Connection' : `keep-alive`,
-            'Accept-Encoding' : `gzip, deflate, br`,
-            'Content-Type' : `application/x-www-form-urlencoded; charset=UTF-8`,
-            'Origin' : `https://fxgl.jx.edu.cn`,
-            'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20A5349b Ariver/1.1.0 AliApp(AP/10.2.86.6000) Nebula WK RVKType(1) AlipayDefined(nt:WIFI,ws:390|780|3.0) AlipayClient/10.2.86.6000 Language/zh-Hans Region/CN MiniProgram APXWebView NebulaX/1.0.0`,
-            'Host' : `fxgl.jx.edu.cn`,
-            'Accept-Language' : `zh-CN,en-US;q=0.8`,
-            'Accept' : `*/*`
+            'X-Requested-With': `XMLHttpRequest`,
+            'Connection': `keep-alive`,
+            'Accept-Encoding': `gzip, deflate, br`,
+            'Content-Type': `application/x-www-form-urlencoded; charset=UTF-8`,
+            'Origin': `https://fxgl.jx.edu.cn`,
+            'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20A5349b Ariver/1.1.0 AliApp(AP/10.2.86.6000) Nebula WK RVKType(1) AlipayDefined(nt:WIFI,ws:390|780|3.0) AlipayClient/10.2.86.6000 Language/zh-Hans Region/CN MiniProgram APXWebView NebulaX/1.0.0`,
+            'Host': `fxgl.jx.edu.cn`,
+            'Accept-Language': `zh-CN,en-US;q=0.8`,
+            'Accept': `*/*`
         },
         body: `province=${province}&city=${city}&district=${district}&street=${street}&xszt=0&jkzk=0&jkzkxq=&sfgl=1&gldd=&mqtw=0&mqtwxq=&zddlwz=${province}${city}${district}${street}&sddlwz=&bprovince=${province}&bcity=${city}&bdistrict=${district}&bstreet=${street}&sprovince=${province}&scity=${city}&sdistrict=${district}&lng=${lng}&lat=${lat}&sfby=${sfby}`
     };
-	return new Promise((resolve) => {
-		$.post(myRequest, (error, resp, data) => {
-			try {
-				if (error) {
-					throw new Error(error);
-				} else {
-                    if(resp.status != 404){
-                        try{
+    return new Promise((resolve) => {
+        $.post(myRequest, (error, resp, data) => {
+            try {
+                if (error) {
+                    throw new Error(error);
+                } else {
+                    if (resp.status != 404) {
+                        try {
                             const body = JSON.parse(data);
                             if (body.code == 1001) {
-                                $.msg($.name, body.msg, '')
-                            } else if (body.code ==1002){
-                                $.log($.name, body.msg, '')
-                            }else {
+                                $.msg('', body.msg, '');
+                            } else if (body.code == 1002) {
+                                $.log('', body.msg, '');
+                            } else {
                                 throw new Error('未知错误');
                             }
+                            $.setdata(today.toString(),lastsignKey)
                         }
-                        catch{
+                        catch {
                             throw new Error('Cookie过期');
                         }
-                    }else{
+                    } else {
                         throw new Error('网页访问404 Cookie过期');
                     }
-					
-				}
-			} catch (e) {
-				console.log(`\n出现错误: ${e.message}`);
-			} finally {
-				resolve();
-			}
-		})
-	})
+
+                }
+            } catch (e) {
+                console.log(`\n出现错误: ${e.message}`);
+            } finally {
+                resolve();
+            }
+        })
+    })
 }
 
 
-(async function() {
-	await Login();
-    await GetUserInfo();
-    await FinalLogin();
-    await Post_Data();
-	$.done();
+(async function () {
+    if ($.getdata(lastsignKey) != today) {
+        await Login();
+        if ($.login_status == 1) {
+            $.log('', '登录成功', '');
+            await GetUserInfo();
+            await FinalLogin();
+            await Post_Data();
+        } else {
+            $.log('', '尝试登录失败,等待下次尝试...', '');
+        }
+    } else {
+        $.log('', '今日已完成打卡,跳过本次定时任务!', '');
+    }
+    $.done();
 })();
 
 // pre-ignore
