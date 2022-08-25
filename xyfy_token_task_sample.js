@@ -24,7 +24,7 @@ const sfby = '1'
 
 //--------------分割线以下不用管------------
 
-const $ = new Env('校园防疫打卡')
+const $ = new Env('校园防疫')
 const tokenKey = 'token_xyfy'
 const lastsignKey = 'lastsign_xyfy'
 const auth_code = $.getdata(tokenKey)
@@ -63,6 +63,8 @@ function Login() {
                         //console.log(temp_data.token1);
                         if (typeof (temp_data.token1) != "undefined") {
                             $.login_status = 1;
+                        }else{
+                            $.msg($.name,'','auth_code已过期,请重新获取');
                         }
                     }
                     catch {
