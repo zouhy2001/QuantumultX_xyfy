@@ -50,7 +50,7 @@ QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Par
     <img src="https://user-images.githubusercontent.com/57806936/185796592-ffe6e044-7be1-4abe-ae17-6730e31c493b.png" width="300px">
     </div>
   - 点击iCloud 找到刚刚保存的文件
-  - 配置好 Cron 表达式 (如 0 0 */3 * * * 每三个小时的整点尝试打一次卡 避免高峰主机拒绝连接的问题 即只显示空白页)
+  - 配置好 Cron 表达式 (如 10 0 */2 * * * 每2个小时尝试打一次卡 避免高峰主机拒绝连接的问题 即只显示空白页)
   - 配置完毕 请求列表右滑可以调试查看效果
 ## 感谢
 [@chavy](https://github.com/chavyleung)
