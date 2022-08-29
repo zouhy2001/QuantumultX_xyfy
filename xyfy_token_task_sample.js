@@ -183,12 +183,12 @@ function Post_Data() {
                             const body = JSON.parse(data);
                             if (body.code == 1001) {
                                 $.msg('', body.msg, '');
+                                $.setdata(today.toString(),lastsignKey);
                             } else if (body.code == 1002) {
                                 $.log('', body.msg, '');
                             } else {
                                 throw new Error('未知错误');
                             }
-                            $.setdata(today.toString(),lastsignKey)
                         }
                         catch {
                             throw new Error('Cookie过期');
