@@ -1,4 +1,11 @@
  # QuantumultX_xyfy
+ 
+ <div align=center>
+<img src="https://user-images.githubusercontent.com/57806936/188250273-4f02975f-9f9c-4d0f-b9d3-969400313489.png">
+</div>
+
+> 打卡最根本的问题就是通过支付宝这个接口登录需要支付宝app内部提供的auth_code用以xyfy服务器认证,但每次获取到的auth_code的有效期只有24小时,打卡的痛点又在于认证服务器的不响应,所以就想着做中间人攻击,每天拿到auth_code让脚本自己去尝试打卡.避免一直卡空白页等待.
+ 
 **使用auth_code签到 auth_code的有效期为24小时 也就是说点一次小程序两天不用管 cron定时暴力美学 可以解决长时间卡白页的问题**
 ## 运行逻辑
 判断今天是否已经使用脚本打卡成功 如未今日未打卡
