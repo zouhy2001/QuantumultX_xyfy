@@ -46,6 +46,8 @@ QuanX脚本->江西高校支付宝校园防疫打卡 使用方法分为三个Par
 引用-资源重写-点击右上角添加新的资源
   - 资源标签随便填 资源路径填 这个 
   - https://raw.githubusercontent.com/zouhy2001/QuantumultX_xyfy/master/QuantumultX_Token.conf
+  - (PS后记,第一次使用可以跳过):使用熟悉后 不想要更新auth_token成功后弹窗,只想保留打卡通知弹窗可以用下面这个 Notnotify版本
+  - https://raw.githubusercontent.com/zouhy2001/QuantumultX_xyfy/master/QuantumultX_Token_Notnotify.conf
   
 <div align=center>
 <img src="https://user-images.githubusercontent.com/57806936/187061592-98af291c-1d39-40db-ba2d-54328825ec3b.PNG" width="300px">
