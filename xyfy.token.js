@@ -3,13 +3,13 @@ const $ = new Env('校园防疫')
 const tokenKey = 'token_xyfy';
 const auth_code = $request.body;
 const remindKey = 'xyfy_version';
-const remindVal = 'xyfy_2022/09/21';
+const remindVal = '2022.09.21';
 //console.log(auth_code);
 
 if($.getdata(remindKey)!=remindVal){
-    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
-    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
-    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
     $.setdata(remindVal, remindKey);
 }
 
