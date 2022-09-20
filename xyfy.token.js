@@ -1,13 +1,21 @@
 const $ = new Env('校园防疫')
 
-const tokenKey = 'token_xyfy'
-const auth_code = $request.body
-
+const tokenKey = 'token_xyfy';
+const auth_code = $request.body;
+const remindKey = 'xyfy_version';
+const remindVal = 'xyfy_2022/09/21';
 //console.log(auth_code);
+
+if($.getdata(remindKey)!=remindVal){
+    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
+    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
+    $.msg(`${$.name}`,`脚本更新了版本 Ver.${remindVal}`,'本消息通知三遍后,该版本不再通知更新.');
+    $.setdata(remindVal, remindKey);
+}
 
 if (auth_code != $.getdata(tokenKey) && auth_code) {
     if ($.setdata(auth_code, tokenKey)) {
-        $.msg(`${$.name}`, '更新auth_code: 成功', '更新时间 ' + new Date().toLocaleTimeString('zh', { hour12: false }))
+        //$.msg(`${$.name}`, '更新auth_code: 成功', '更新时间 ' + new Date().toLocaleTimeString('zh', { hour12: false }))
         $.log(`[${$.name}] 更新auth_code: 成功, auth_code: ${auth_code}`)
     }
 } else {
