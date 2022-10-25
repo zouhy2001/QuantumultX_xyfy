@@ -3,13 +3,14 @@ const $ = new Env('校园防疫')
 const tokenKey = 'token_xyfy';
 const auth_code = $request.body;
 const remindKey = 'xyfy_version';
-const remindVal = '2022.09.21';
+const remindVal = '2022.10.25';
 //console.log(auth_code);
 
 if($.getdata(remindKey)!=remindVal){
-    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
-    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
-    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal} 详见Github`,'本消息通知三遍后,该版本不再通知更新.');
+    let openurl = 'https://github.com/zouhy2001/QuantumultX_xyfy#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97'
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal}`,'点击此通知跳转,以了解更多', openurl);
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal}`,'点击此通知跳转,以了解更多', openurl);
+    $.msg(`${$.name}`,`脚本新版本 Ver.${remindVal}`,'点击此通知跳转,以了解更多', openurl);
     $.setdata(remindVal, remindKey);
 }
 

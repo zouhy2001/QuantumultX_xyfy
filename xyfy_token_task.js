@@ -18,9 +18,9 @@ $.token_status = 1;
 
 let today = new Date().getDate();
 
-//$.getdata(lastsignKey) != today
+//
 (async function () {
-    while (true && $.token_status == 1) {
+    while ($.getdata(lastsignKey) != today && $.token_status == 1) {
         await Login();
         if ($.login_status == 1) {
             $.log('', '', '登录成功');
@@ -31,8 +31,8 @@ let today = new Date().getDate();
             await Post_Data();
             break;
         } else {
-            $.log('', '', '尝试登录失败,100ms后重试');
-            await $.wait(100);
+            $.log('', '', '尝试登录失败,200ms后重试');
+            await $.wait(200);
         }
     }
     $.done();
@@ -67,7 +67,7 @@ function Login() {
                         if (typeof (temp_data.token1) != "undefined") {
                             $.login_status = 1;
                         } else {
-                            $.msg($.name, '', 'auth_code已过期,请重新获取后手动执行');
+                            $.msg($.name, 'auth_code已过期,请重新获取后手动执行', '点击此通知可以跳转刷新token', 'alipays://platformapi/startapp?appId=2021001118673392');
                             $.token_status = 0;
                         }
                     } catch {
@@ -237,7 +237,7 @@ function Post_Data() {
                         try {
                             const body = JSON.parse(data);
                             if (body.code == 1001 || body.code == 1002) {
-                                $.msg('', body.msg, '');
+                                $.msg($.name, body.msg, '点击此通知可以跳转刷新token', 'alipays://platformapi/startapp?appId=2021001118673392');
                                 $.setdata(today.toString(), lastsignKey);
                             } else {
                                 throw new Error('未知错误');
